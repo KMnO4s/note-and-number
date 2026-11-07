@@ -6,7 +6,7 @@ export type LineResult = { kind: "empty" | "comment" | "value" | "error"; text: 
 export const CURRENCY_RATES: Record<string, number> = { USD: 1.08, GBP: 0.85, CHF: 0.95, JPY: 165, CAD: 1.5 };
 
 function buildMath(): MathJsInstance {
-  const math = create(all, {});
+  const math = create(all!, {});
   math.createUnit("EUR", { aliases: ["eur", "euro", "euros"] });
   for (const [code, rate] of Object.entries(CURRENCY_RATES)) {
     math.createUnit(code, { definition: `${1 / rate} EUR`, aliases: [code.toLowerCase()] });
@@ -76,12 +76,12 @@ export function evaluateDocument(text: string, now = new Date()): LineResult[] {
     const d = line.match(DATE_RE);
     if (d) {
       const base = new Date(now);
-      const w = d[1].toLowerCase();
+      const w = (d[1] ?? "").toLowerCase();
       if (w === "demain" || w === "tomorrow") base.setDate(base.getDate() + 1);
       if (w === "hier" || w === "yesterday") base.setDate(base.getDate() - 1);
       try {
         if (d[2]) {
-          const delta = math.evaluate(preprocess(d[3])) as any;
+          const delta = math.evaluate(preprocess(d[3] ?? "0")) as any;
           const days = math.isUnit(delta) ? delta.toNumber("days") : Number(delta);
           base.setTime(base.getTime() + (d[2] === "-" ? -1 : 1) * days * 86400000);
         }
