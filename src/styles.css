@@ -79,31 +79,32 @@
 }
 
 :root {
-  --radius: 0.375rem;
-  --background: var(--sn-stylekit-editor-background-color, oklch(0.985 0.006 85));
-  --foreground: var(--sn-stylekit-editor-foreground-color, oklch(0.24 0.02 60));
-  --card: oklch(0.97 0.01 85);
-  --card-foreground: var(--foreground);
+  /* Fallbacks = Standard Notes default theme; SN themes override the --sn-stylekit-* vars */
+  --radius: 0.25rem;
+  --background: var(--sn-stylekit-editor-background-color, var(--sn-stylekit-background-color, #ffffff));
+  --foreground: var(--sn-stylekit-editor-foreground-color, var(--sn-stylekit-foreground-color, #000000));
+  --card: var(--sn-stylekit-contrast-background-color, #f6f6f6);
+  --card-foreground: var(--sn-stylekit-contrast-foreground-color, var(--foreground));
   --popover: var(--card);
   --popover-foreground: var(--foreground);
-  --primary: var(--sn-stylekit-info-color, oklch(0.55 0.15 150));
-  --primary-foreground: oklch(0.98 0 0);
-  --secondary: oklch(0.95 0.01 85);
-  --secondary-foreground: var(--foreground);
-  --muted: oklch(0.95 0.01 85);
-  --muted-foreground: oklch(0.55 0.02 70);
-  --accent: oklch(0.93 0.03 150);
+  --primary: var(--sn-stylekit-info-color, #086dd6);
+  --primary-foreground: var(--sn-stylekit-info-contrast-color, #ffffff);
+  --secondary: var(--sn-stylekit-secondary-background-color, #f6f6f6);
+  --secondary-foreground: var(--sn-stylekit-secondary-foreground-color, var(--foreground));
+  --muted: var(--secondary);
+  --muted-foreground: var(--sn-stylekit-neutral-color, #989898);
+  --accent: var(--secondary);
   --accent-foreground: var(--foreground);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.98 0 0);
-  --border: var(--sn-stylekit-border-color, oklch(0.9 0.01 85));
+  --destructive: var(--sn-stylekit-danger-color, #cc2128);
+  --destructive-foreground: #ffffff;
+  --border: var(--sn-stylekit-border-color, #e3e3e3);
   --input: var(--border);
   --ring: var(--primary);
-  --result: var(--sn-stylekit-info-color, oklch(0.5 0.14 150));
-  --syntax-number: oklch(0.55 0.15 50);
-  --syntax-unit: oklch(0.5 0.12 240);
-  --syntax-comment: oklch(0.62 0.02 70);
-  --syntax-op: oklch(0.55 0.02 70);
+  --result: var(--sn-stylekit-info-color, #086dd6);
+  --syntax-number: var(--sn-stylekit-warning-color, #f28c52);
+  --syntax-unit: var(--sn-stylekit-success-color, #2b9612);
+  --syntax-comment: var(--sn-stylekit-neutral-color, #989898);
+  --syntax-op: var(--sn-stylekit-neutral-color, #989898);
 }
 
 @layer base {
@@ -118,8 +119,8 @@
 }
 
 .numi-text {
-  font-family: var(--font-mono);
-  font-size: 15px;
+  font-family: var(--sn-stylekit-monospace-font, var(--font-mono));
+  font-size: var(--sn-stylekit-font-size-editor, 15px);
   line-height: 1.75rem;
   white-space: pre;
   tab-size: 2;
