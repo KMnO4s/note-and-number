@@ -36,7 +36,10 @@ function preprocess(src: string): string {
   s = s.replace(/(\d+(?:\.\d+)?)\s*%/g, "($1/100)");
   // "3 h 20 min" -> "3 h + 20 min"
   s = s.replace(/(\d\s*[a-zA-Z]+)\s+(?=\d)/g, "$1 + ");
-  return s.trim();
+  s = s.trim();
+  const i = s.lastIndexOf(" to ");
+  if (i > 0 && !s.includes("=")) s = `(${s.slice(0, i)}) to ${s.slice(i + 4)}`;
+  return s;
 }
 
 const DATE_RE = /^(aujourd'hui|today|demain|tomorrow|hier|yesterday)\s*(?:([+-])\s*(.+))?$/i;
