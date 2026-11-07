@@ -1,0 +1,11 @@
+{
+  "identifier": "dev.lovable.numi-notes",
+  "name": "Numi Notes",
+  "content_type": "SN|Component",
+  "area": "editor-editor",
+  "version": "1.0.0",
+  "description": "Calculatrice textuelle façon Numi.",
+  "url": "https://note-and-number.lovable.app/",
+  "download_url": "",
+  "latest_url": "https://note-and-number.lovable.app/ext.json"
+}
