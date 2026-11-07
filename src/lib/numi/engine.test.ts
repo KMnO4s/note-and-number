@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { evaluateDocument } from "./engine";
-const one = (s: string) => evaluateDocument(s)[0];
+const one = (s: string) => evaluateDocument(s)[0]!;
 const n = (s: string) => evaluateDocument(s).at(-1)!.numeric;
 
 describe("numi engine", () => {
@@ -14,5 +14,5 @@ describe("numi engine", () => {
   it("sum of block", () => expect(n("10\n20\nsum")).toBe(30));
   it("prev", () => expect(n("10\nprev * 2")).toBe(20));
   it("comments", () => expect(one("# titre").kind).toBe("comment"));
-  it("date", () => expect(evaluateDocument("aujourd'hui + 3 semaines", new Date(2026, 0, 1))[0].text).toContain("22"));
+  it("date", () => expect(evaluateDocument("aujourd'hui + 3 semaines", new Date(2026, 0, 1))[0]!.text).toContain("22"));
 });
