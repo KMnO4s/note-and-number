@@ -54,7 +54,7 @@ function formatValue(v: unknown): { text: string; numeric?: number } {
     const name = u.formatUnits();
     const num = u.toNumber(name);
     const unitLabel = name.replace(/\bEUR\b/, "€").replace(/\bUSD\b/, "$").replace(/\bGBP\b/, "£")
-      .replace(/\bdegC\b/, "°C").replace(/\bdegF\b/, "°F");
+      .replace(/\bdegC\b/, "°C").replace(/\bdegF\b/, "°F").replace(/\bminute\b/, "min");
     return { text: `${num.toLocaleString("fr-FR", { maximumFractionDigits: 4 })} ${unitLabel}`, numeric: num };
   }
   if (math.isBigNumber(v) || math.isFraction(v)) return formatValue(Number(v));
