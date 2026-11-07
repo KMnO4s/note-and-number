@@ -29,3 +29,5 @@ use the editor.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
 - Calculation logic lives in src/lib/numi/engine.ts (pure, tested); the Standard Notes relay is imported dynamically in the browser only, because it touches window.
+- GitHub Pages uses a conditional TanStack prerender build with Nitro disabled and the Pages base path; this keeps the normal Lovable deployment unchanged.
+- The root ext.json is a distribution template; scripts/pages-manifest.mjs generates the deployed manifest with the actual Pages URL, preventing repository-specific URLs from drifting.

@@ -6,16 +6,39 @@ This project was built with [Lovable](https://lovable.dev).
 
 ## Installer l'éditeur dans Standard Notes
 
-Le manifeste de l'extension est le fichier [`ext.json`](./ext.json) à la racine de ce dépôt. Il pointe vers l'app publiée sur `https://note-and-number.lovable.app/`.
+La distribution suit le modèle de [Chrono Notes Plus](https://github.com/KMnO4s/chrono-notes-plus) : application sur **GitHub Pages**, manifeste public `ext.json` et publication automatique avec **GitHub Actions**. Aucune publication sur Lovable n’est nécessaire.
 
-1. **Publier l'app** depuis Lovable (bouton *Publish*), sinon l'éditeur ne pourra pas se charger.
-2. Récupérer l'URL du manifeste, au choix :
-   - version servie par l'app : `https://note-and-number.lovable.app/ext.json`
-   - version de ce dépôt : sur GitHub, ouvrir `ext.json` → bouton **Raw**, et copier l'URL (`https://raw.githubusercontent.com/<compte>/<depot>/main/ext.json`).
-3. Dans Standard Notes : **Préférences → Général → Extensions avancées** (ou **Extensions**) → coller l'URL dans *Install extension* → **Installer**.
-4. Ouvrir une note, cliquer sur le sélecteur d'éditeur et choisir **Numi Notes**.
+### 1. Activer GitHub Pages
 
-> Si vous hébergez l'app ailleurs (Cloudflare, Vercel, Netlify…), remplacez `url` et `latest_url` dans `ext.json` par votre domaine.
+1. Dans votre dépôt GitHub, ouvrez **Settings → Pages**.
+2. Sous **Build and deployment → Source**, choisissez **GitHub Actions**.
+3. Dans **Actions**, choisissez **Deploy Standard Notes editor to GitHub Pages**, puis **Run workflow** sur `main`. Chaque changement sur `main` relance aussi la publication.
+4. Attendez que `build` et `deploy` soient verts. L’adresse publiée apparaît dans **Settings → Pages** et dans le résultat de la publication.
+
+Si les workflows sont désactivés, activez-les dans **Settings → Actions → General**. Pour un dépôt privé, la disponibilité de Pages dépend de votre offre GitHub ; l’éditeur doit être accessible publiquement pour Standard Notes.
+
+### 2. Importer l’extension
+
+Pour une page publiée à `https://votrecompte.github.io/votredepot/`, l’URL d’installation est :
+
+```text
+https://votrecompte.github.io/votredepot/ext.json
+```
+
+1. Ouvrez cette adresse dans votre navigateur : elle doit afficher le manifeste JSON.
+2. Dans Standard Notes, ouvrez **Settings / Préférences → Extensions → Import Extension** (selon la version : **Général → Extensions avancées**).
+3. Collez l’adresse du manifeste et cliquez sur **Install / Installer**.
+4. Ouvrez une note et choisissez **Numi Notes** dans le sélecteur d’éditeur.
+
+Utilisez **l’adresse GitHub Pages du manifeste**, pas l’adresse du dépôt ni son fichier Raw. L’installation d’éditeurs personnalisés dépend de votre version et de votre offre Standard Notes.
+
+### Manifeste et chemins de publication
+
+[`ext.json`](./ext.json) à la racine est le modèle du manifeste. Après la compilation, [`scripts/pages-manifest.mjs`](./scripts/pages-manifest.mjs) génère `dist/client/ext.json` avec l’adresse réelle fournie par GitHub Pages : `url` pointe vers l’éditeur et `latest_url` vers son manifeste. Le compte, le nom du dépôt et un éventuel domaine personnalisé sont pris en compte automatiquement ; **ne collez pas les adresses d’exemple du modèle dans Standard Notes**.
+
+Le workflow adapte également les chemins au sous-dossier du dépôt et publie uniquement les fichiers statiques. Les calculs et l’intégration Standard Notes fonctionnent dans le navigateur.
+
+`download_url` reste vide : aucune archive `latest.zip` n’est fournie, et la prise en charge hors ligne de Standard Notes n’est pas promise. L’installation réelle dans Standard Notes reste à vérifier après la première publication.
 
 ## Build with Lovable
 
