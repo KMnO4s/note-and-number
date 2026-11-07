@@ -23,6 +23,7 @@ const WORDS: [RegExp, string][] = [
   [/\bmois\b/gi, "months"], [/\bans?\b/gi, "years"], [/\bmètres?\b/gi, "m"],
   [/\bdivisé par\b/gi, "/"], [/\bplus\b/gi, "+"], [/\bmoins\b/gi, "-"], [/\bfois\b/gi, "*"],
   [/\s(en|in|vers)\s/gi, " to "],
+  [/(\d\s*|to\s+)min\b/g, "$1minute"],
 ];
 
 function preprocess(src: string): string {
