@@ -1,11 +1,12 @@
 {
   "identifier": "dev.lovable.numi-notes",
   "name": "Numi Notes",
+  "icon": "🧮",
   "content_type": "SN|Component",
   "area": "editor-editor",
   "version": "1.0.0",
   "description": "Calculatrice textuelle façon Numi.",
-  "url": "https://note-and-number.lovable.app/",
+  "url": "https://YOUR_GITHUB_USERNAME.github.io/YOUR_REPOSITORY_NAME/",
   "download_url": "",
-  "latest_url": "https://note-and-number.lovable.app/ext.json"
+  "latest_url": "https://YOUR_GITHUB_USERNAME.github.io/YOUR_REPOSITORY_NAME/ext.json"
 }
