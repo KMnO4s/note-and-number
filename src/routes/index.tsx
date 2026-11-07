@@ -1,23 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { NumiEditor } from "@/components/NumiEditor";
 
-// The home route ships no og:image, so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
-  component: Index,
+  head: () => ({
+    meta: [
+      { title: "Numi Notes — calculatrice pour Standard Notes" },
+      { name: "description", content: "Éditeur Standard Notes qui calcule chaque ligne en temps réel : unités, pourcentages, devises, variables." },
+      { property: "og:title", content: "Numi Notes — calculatrice pour Standard Notes" },
+      { property: "og:description", content: "Calculs en langage naturel dans vos notes Standard Notes." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
+    ],
+  }),
+  component: NumiEditor,
 });
-
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
-}
