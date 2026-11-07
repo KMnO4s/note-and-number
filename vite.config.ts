@@ -9,8 +9,8 @@
 // You can pass additional config via defineConfig({ vite: { ... }, etc... }) if needed.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
-const githubPages = process.env.GITHUB_PAGES === "true";
-const pagesBase = `${(process.env.PAGES_BASE_PATH ?? "").replace(/\/+$/, "")}/`;
+const githubPages = process.env['GITHUB_PAGES'] === "true";
+const pagesBase = `${(process.env['PAGES_BASE_PATH'] ?? "").replace(/\/+$/, "")}/`;
 
 export default defineConfig({
   ...(githubPages ? { nitro: false, vite: { base: pagesBase } } : {}),
